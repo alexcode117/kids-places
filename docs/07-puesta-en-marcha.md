@@ -22,8 +22,9 @@ Sin configurar nada, la app arranca en **modo demostración**:
 2. Abre **SQL Editor** y ejecuta, en este orden:
    1. `supabase/migrations/20261008120000_esquema_inicial.sql` (tablas, seguridad, fotos)
    2. `supabase/migrations/20261008150000_ubicaciones_y_cursos.sql`
-   3. `supabase/seed.sql` (categorías, servicios y ciudades)
-   4. `supabase/datos/sitios-dataset.sql` (los sitios del dataset, ver docs/06-formato-del-dataset.md)
+   3. `supabase/migrations/20261008170000_corregir_proteccion_rol.sql`
+   4. `supabase/seed.sql` (categorías, servicios y ciudades)
+   5. `supabase/datos/sitios-dataset.sql` (los sitios del dataset, ver docs/06-formato-del-dataset.md)
 3. En **Project Settings → API**, copia la *Project URL* y la *publishable key* (o *anon key*).
 4. Copia `apps/web/.env.example` como `apps/web/.env.local` y pega ahí esos dos valores.
 5. Reinicia `npm run dev`. La etiqueta "Modo demostración" desaparece.
