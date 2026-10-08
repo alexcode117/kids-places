@@ -112,12 +112,13 @@ export function PlaceDetail({
         </dl>
       </Section>
 
-      <div className="flex flex-wrap gap-2">
+      {/* En celular, las acciones quedan fijas abajo, al alcance del pulgar. */}
+      <div className="flex flex-wrap gap-2 mobile:sticky mobile:bottom-0 mobile:z-10 mobile:-mx-4 mobile:flex-nowrap mobile:border-t mobile:border-line mobile:bg-surface/95 mobile:px-4 mobile:pt-3 mobile:pb-[calc(0.75rem+env(safe-area-inset-bottom))] mobile:backdrop-blur">
         <a
           href={`https://www.google.com/maps/dir/?api=1&destination=${place.lat},${place.lng}`}
           target="_blank"
           rel="noopener"
-          className="inline-flex items-center gap-2 rounded-full bg-orange px-4 py-2.5 text-sm font-extrabold text-on-orange"
+          className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-orange px-4 py-2.5 text-sm font-extrabold text-on-orange mobile:flex-1 mobile:text-base"
         >
           <Icon name="navigate" /> Cómo llegar
         </a>
@@ -125,16 +126,18 @@ export function PlaceDetail({
           href={`https://waze.com/ul?ll=${place.lat},${place.lng}&navigate=yes`}
           target="_blank"
           rel="noopener"
-          className="inline-flex items-center gap-2 rounded-full border-[1.5px] border-line-strong px-4 py-2.5 text-sm font-extrabold hover:bg-chip"
+          className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full border-[1.5px] border-line-strong px-4 py-2.5 text-sm font-extrabold hover:bg-chip"
         >
-          Abrir en Waze
+          <span className="mobile:hidden">Abrir en </span>Waze
         </a>
         <button
           type="button"
           onClick={share}
-          className="inline-flex items-center gap-2 rounded-full border-[1.5px] border-line-strong px-4 py-2.5 text-sm font-extrabold hover:bg-chip"
+          aria-label={copied ? "Enlace copiado" : "Compartir"}
+          className="inline-flex min-h-11 min-w-11 items-center justify-center gap-2 rounded-full border-[1.5px] border-line-strong px-4 py-2.5 text-sm font-extrabold hover:bg-chip mobile:px-0"
         >
-          <Icon name="share" /> {copied ? "Enlace copiado" : "Compartir"}
+          <Icon name={copied ? "check" : "share"} />
+          <span className="mobile:hidden">{copied ? "Enlace copiado" : "Compartir"}</span>
         </button>
       </div>
     </article>

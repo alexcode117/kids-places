@@ -32,7 +32,7 @@ export async function generateMetadata({ params }: PageProps<"/sitios/[slug]">):
 export default function PlacePage({ params }: PageProps<"/sitios/[slug]">) {
   return (
     <div className="min-h-dvh">
-      <header className="flex items-center gap-4 border-b border-line bg-surface px-5 py-2.5 max-[600px]:px-4">
+      <header className="flex items-center gap-4 border-b border-line bg-surface px-5 pt-[calc(0.625rem+env(safe-area-inset-top))] pb-2.5 mobile:px-4">
         <Link href="/" aria-label="Kids·Place, inicio">
           <Logotype className="h-8 w-auto" />
         </Link>
@@ -40,7 +40,7 @@ export default function PlacePage({ params }: PageProps<"/sitios/[slug]">) {
           <AccountButton />
         </div>
       </header>
-      <main className="mx-auto max-w-[720px] px-5 pt-4 pb-12 max-[600px]:px-4">
+      <main className="mx-auto max-w-[720px] px-5 pt-4 pb-12 mobile:px-4 mobile:pt-2 mobile:pb-0">
         <Suspense fallback={<PlaceSkeleton />}>{params.then(({ slug }) => <PlaceContent slug={slug} />)}</Suspense>
       </main>
     </div>

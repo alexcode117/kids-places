@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+/* Un solo punto de quiebre para toda la app: debajo de 860px es la experiencia de celular. */
+@custom-variant mobile (@media (width < 860px));
+@custom-variant desktop (@media (width >= 860px));
+
 /* Tokens de marca: ver docs/05-guia-de-marca.md y packages/tokens */
 :root {
   --orange: #f4a546;
@@ -183,6 +187,13 @@ h3 {
   100% {
     transform: scale(1.5);
     opacity: 0;
+  }
+}
+
+/* En celular se hace zoom con los dedos: se ocultan los botones +/− */
+@media (width < 860px) {
+  .maplibregl-ctrl-bottom-right .maplibregl-ctrl-group {
+    display: none;
   }
 }
 

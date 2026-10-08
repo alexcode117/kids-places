@@ -58,7 +58,7 @@ export function LoginDialog({
       onClose={onClose}
       onClick={(e) => e.target === ref.current && ref.current?.close()}
       aria-labelledby="login-title"
-      className="m-auto w-[min(400px,calc(100%-32px))] rounded-3xl bg-surface p-0 text-ink shadow-soft backdrop:bg-black/50"
+      className="m-auto max-h-[calc(100dvh-32px)] w-[min(400px,calc(100%-32px))] overflow-y-auto rounded-3xl bg-surface p-0 text-ink shadow-soft backdrop:bg-black/50"
     >
       <div className="px-6 pt-6 pb-5 text-center">
         <Face className="mx-auto w-28" />
@@ -106,7 +106,7 @@ export function LoginDialog({
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="tucorreo@ejemplo.com"
-                  className="rounded-xl border-[1.5px] border-line bg-bg px-3 py-2.5 outline-none focus:border-teal"
+                  className="rounded-xl border-[1.5px] border-line bg-bg px-3 py-2.5 text-base outline-none focus:border-teal"
                 />
                 <button
                   type="submit"

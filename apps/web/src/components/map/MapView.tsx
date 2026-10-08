@@ -52,30 +52,35 @@ export function MapView({
   selectedId,
   hoverId,
   userLocation,
+  bottomInset = 0,
   onSelect,
   onHover,
+  onBackgroundClick,
 }: {
   places: Place[];
   center: LatLng & { zoom: number };
   selectedId: string | null;
   hoverId: string | null;
   userLocation: LatLng | null;
+  /** Alto (px) tapado por elementos sobre el mapa, para centrar el sitio en el área visible. */
+  bottomInset?: number;
   onSelect: (id: string) => void;
   onHover: (id: string | null) => void;
+  onBackgroundClick?: () => void;
 }) {
   const container = useRef<HTMLDivElement>(null);
   const mapRef = useRef<MapLibreMap | null>(null);
   const libRef = useRef<typeof import("maplibre-gl") | null>(null);
   const markers = useRef(new Map<string, { marker: Marker; el: HTMLButtonElement }>());
   const meMarker = useRef<Marker | null>(null);
-  const handlers = useRef({ onSelect, onHover });
+  const handlers = useRef({ onSelect, onHover, onBackgroundClick });
   const initialCenter = useRef(center);
   const [ready, setReady] = useState(false);
   const [failed, setFailed] = useState(false);
 
   useEffect(() => {
-    handlers.current = { onSelect, onHover };
-  }, [onSelect, onHover]);
+    handlers.current = { onSelect, onHover, onBackgroundClick };
+  }, [onSelect, onHover, onBackgroundClick]);
 
   // Crear el mapa una sola vez.
   useEffect(() => {
@@ -106,6 +111,7 @@ export function MapView({
         map.addControl(new lib.NavigationControl({ showCompass: false }), "bottom-right");
         map.on("style.load", () => applyBrandColors(map));
         map.on("error", (e) => console.warn("Mapa:", e.error?.message));
+        map.on("click", () => handlers.current.onBackgroundClick?.());
         mapRef.current = map;
         mq.addEventListener("change", onScheme);
         setReady(true);
@@ -164,7 +170,7 @@ export function MapView({
     fitted.current = true;
     const bounds = new lib.LngLatBounds();
     for (const p of places) bounds.extend([p.lng, p.lat]);
-    map.fitBounds(bounds, { padding: 70, maxZoom: 14, duration: 0 });
+    map.fitBounds(bounds, { padding: { top: 70, bottom: 90, left: 50, right: 50 }, maxZoom: 14, duration: 0 });
   }, [ready, places]);
 
   // Estados de selección y hover.
@@ -183,8 +189,14 @@ export function MapView({
     const p = places.find((x) => x.id === selectedId);
     if (!p) return;
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    map.flyTo({ center: [p.lng, p.lat], zoom: Math.max(map.getZoom(), 14), essential: true, duration: reduce ? 0 : 900 });
-  }, [ready, selectedId, places]);
+    map.flyTo({
+      center: [p.lng, p.lat],
+      zoom: Math.max(map.getZoom(), 14),
+      padding: { top: 0, right: 0, left: 0, bottom: bottomInset },
+      essential: true,
+      duration: reduce ? 0 : 900,
+    });
+  }, [ready, selectedId, places, bottomInset]);
 
   // Ubicación del usuario.
   useEffect(() => {
