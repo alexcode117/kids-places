@@ -1,0 +1,201 @@
+@import "tailwindcss";
+
+/* Tokens de marca: ver docs/05-guia-de-marca.md y packages/tokens */
+:root {
+  --orange: #f4a546;
+  --blue: #395f72;
+  --teal: #90c7c1;
+  --on-orange: #3b2608;
+
+  --bg: #f3f7f6;
+  --surface: #ffffff;
+  --ink: #23404c;
+  --ink-2: #5d7682;
+  --line: #dfe9e7;
+  --line-strong: #c4d6d3;
+  --chip: #eaf4f2;
+  --brand-ink: #395f72;
+  --ph-base: #fdf3e4;
+  --shadow: 0 6px 24px rgb(35 64 76 / 0.14);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #12201f;
+    --surface: #182a2f;
+    --ink: #e6f0ee;
+    --ink-2: #9db4b6;
+    --line: #28403f;
+    --line-strong: #3a5655;
+    --chip: #20363a;
+    --brand-ink: #90c7c1;
+    --ph-base: #1f3337;
+    --shadow: 0 6px 24px rgb(0 0 0 / 0.45);
+    color-scheme: dark;
+  }
+}
+
+@theme inline {
+  --color-orange: var(--orange);
+  --color-blue: var(--blue);
+  --color-teal: var(--teal);
+  --color-on-orange: var(--on-orange);
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-chip: var(--chip);
+  --color-brand-ink: var(--brand-ink);
+  --font-sans: var(--font-nunito), ui-rounded, system-ui, sans-serif;
+  --font-display: var(--font-brownist), var(--font-nunito), ui-rounded, sans-serif;
+  --shadow-soft: var(--shadow);
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+:focus-visible {
+  outline: 3px solid var(--orange);
+  outline-offset: 2px;
+  border-radius: 8px;
+}
+
+h1,
+h2,
+h3 {
+  text-wrap: balance;
+}
+
+/* Estrellas de solo lectura con relleno parcial */
+.stars {
+  position: relative;
+  display: inline-block;
+  letter-spacing: 1px;
+  line-height: 1;
+}
+.stars > .bg {
+  color: var(--line-strong);
+}
+.stars > .fg {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: var(--pct);
+  overflow: hidden;
+  white-space: nowrap;
+  color: var(--orange);
+}
+
+/* Pines del mapa (elementos HTML de MapLibre) */
+.kp-marker {
+  width: 40px;
+  height: 50px;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  filter: drop-shadow(0 3px 4px rgb(20 40 50 / 0.3));
+}
+.kp-marker svg {
+  display: block;
+  width: 40px;
+  height: 50px;
+  transform-origin: 50% 100%;
+  transition: transform 0.15s;
+}
+.kp-marker .ring {
+  opacity: 0;
+}
+.kp-marker:hover svg,
+.kp-marker.is-hover svg {
+  transform: scale(1.12);
+}
+.kp-marker.is-active svg {
+  transform: scale(1.3);
+}
+.kp-marker.is-active .ring {
+  opacity: 1;
+}
+.kp-marker .lbl {
+  position: absolute;
+  bottom: 56px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--surface);
+  color: var(--ink);
+  font-weight: 800;
+  font-size: 13px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  white-space: nowrap;
+  box-shadow: var(--shadow);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s;
+}
+.kp-marker:hover .lbl,
+.kp-marker.is-hover .lbl,
+.kp-marker.is-active .lbl {
+  opacity: 1;
+}
+
+.kp-me {
+  position: relative;
+  width: 56px;
+  height: 56px;
+  pointer-events: none;
+}
+.kp-me .pulse {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: var(--orange);
+  opacity: 0.25;
+  animation: kp-pulse 2.4s ease-out infinite;
+}
+.kp-me .face {
+  position: absolute;
+  inset: 8px;
+  border-radius: 50%;
+  background: #fff;
+  border: 3px solid var(--orange);
+  display: grid;
+  place-items: center;
+}
+.kp-me .face img {
+  width: 30px;
+}
+@keyframes kp-pulse {
+  0% {
+    transform: scale(0.7);
+    opacity: 0.45;
+  }
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+
+.maplibregl-ctrl-attrib {
+  font-family: var(--font-sans);
+  font-size: 11px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .kp-marker svg {
+    transition: none;
+  }
+  .kp-me .pulse {
+    animation: none;
+  }
+}
