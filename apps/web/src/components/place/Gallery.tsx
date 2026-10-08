@@ -13,8 +13,7 @@ interface Slide {
 
 function slidesFor(place: Place): Slide[] {
   if (place.photos.length) return place.photos.map((p) => ({ url: p.url, caption: p.caption }));
-  const captions = place.samplePhotoCaptions?.length ? place.samplePhotoCaptions : ["Sin fotos todavía"];
-  return captions.map((c) => ({ url: null, caption: place.samplePhotoCaptions ? `Foto de ejemplo · ${c}` : c }));
+  return [{ url: null, caption: "Sin fotos todavía" }];
 }
 
 function SlideView({ place, slide, index, sizes }: { place: Place; slide: Slide; index: number; sizes: string }) {

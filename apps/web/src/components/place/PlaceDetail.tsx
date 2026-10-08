@@ -101,6 +101,11 @@ export function PlaceDetail({
               <dd className="min-w-0">
                 <small className="block text-xs text-ink-2">{label}</small>
                 {value}
+                {icon === "pin" && !place.locationVerified ? (
+                  <small className="mt-0.5 block text-xs font-bold text-ink-2">
+                    El punto en el mapa es aproximado: lo estamos verificando.
+                  </small>
+                ) : null}
               </dd>
             </div>
           ))}

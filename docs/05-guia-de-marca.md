@@ -31,6 +31,7 @@
 | Centros comerciales | `#9a7fc4` |
 | Fiestas y eventos | `#da7fa2` |
 | Deportes y actividades | `#6f84d0` |
+| Cursos y talleres | `#9c4f7a` |
 | Hospedaje familiar | `#bf8a5b` |
 | Salud infantil | `#d0605a` |
 

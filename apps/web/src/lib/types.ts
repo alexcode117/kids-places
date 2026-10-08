@@ -18,6 +18,8 @@ export interface Place {
   address: string;
   lat: number;
   lng: number;
+  /** false mientras la ubicación sea aproximada y no la haya verificado un administrador. */
+  locationVerified: boolean;
   phone: string | null;
   instagram: string | null;
   website: string | null;
@@ -28,8 +30,6 @@ export interface Place {
   isFeatured: boolean;
   tags: TagSlug[];
   photos: PlacePhoto[];
-  /** Fotos de ejemplo: se dibuja una ilustración con este pie en lugar de una imagen. */
-  samplePhotoCaptions?: string[];
 }
 
 export interface Ad {

@@ -19,6 +19,7 @@ interface PlaceCardRow {
   address: string;
   lat: number;
   lng: number;
+  location_verified: boolean;
   phone: string | null;
   instagram: string | null;
   website: string | null;
@@ -45,6 +46,7 @@ function toPlace(row: PlaceCardRow): Place | null {
     address: row.address,
     lat: row.lat,
     lng: row.lng,
+    locationVerified: row.location_verified,
     phone: row.phone,
     instagram: row.instagram,
     website: row.website,
@@ -59,7 +61,7 @@ function toPlace(row: PlaceCardRow): Place | null {
 }
 
 /** Todos los sitios publicados de una ciudad. */
-export async function getPlaces(city = "caracas"): Promise<Place[]> {
+export async function getPlaces(city: string): Promise<Place[]> {
   "use cache";
   cacheLife("hours");
   cacheTag("places");

@@ -17,9 +17,12 @@ Kids·Place es un mapa de lugares aptos para niños en Venezuela: parques, resta
 | Plataforma | Web primero; app móvil después |
 | Idioma | Solo español |
 | Quién carga sitios | Solo administradores |
+| Dataset inicial | Planes vacacionales 2026: se importan solo los sitios y sus datos, sin fechas ni costos |
+| Coordenadas | Las agrega el administrador; mientras tanto, ubicación aproximada por zona marcada como tal |
+| Filtro por edad | No por ahora |
 | Puntuación | Estrellas de 1 a 5, sin comentarios. Requiere sesión. Un voto por usuario y sitio, editable |
 | Inicio de sesión | Google o enlace mágico por correo |
-| Ciudad inicial | Caracas (las demás se habilitan cuando tengan sitios) |
+| Ciudad inicial | Barquisimeto, incluida Cabudare (las demás se habilitan cuando tengan sitios) |
 | Monetización inicial | Anuncios propios (vendidos a negocios locales) + Google AdSense cuando haya tráfico |
 | Monetización futura | Sitios patrocinados / destacados |
 | Dominio | Aún no hay. Se usa el subdominio de Vercel mientras tanto |
@@ -35,8 +38,9 @@ Kids·Place es un mapa de lugares aptos para niños en Venezuela: parques, resta
 7. Centros comerciales
 8. Fiestas y eventos
 9. Deportes y actividades
-10. Hospedaje familiar
-11. Salud infantil
+10. Cursos y talleres (academias de arte, idiomas, música, robótica…)
+11. Hospedaje familiar
+12. Salud infantil
 
 ## Servicios (etiquetas filtrables)
 

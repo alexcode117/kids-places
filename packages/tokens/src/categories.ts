@@ -10,6 +10,7 @@ export type CategorySlug =
   | "comerciales"
   | "fiestas"
   | "deportes"
+  | "cursos"
   | "hospedaje"
   | "salud";
 
@@ -31,6 +32,7 @@ export const CATEGORIES: readonly Category[] = [
   { slug: "comerciales", name: "Centros comerciales", color: "#9a7fc4", icon: "comerciales" },
   { slug: "fiestas", name: "Fiestas y eventos", color: "#da7fa2", icon: "fiestas" },
   { slug: "deportes", name: "Deportes y actividades", color: "#6f84d0", icon: "deportes" },
+  { slug: "cursos", name: "Cursos y talleres", color: "#9c4f7a", icon: "cursos" },
   { slug: "hospedaje", name: "Hospedaje familiar", color: "#bf8a5b", icon: "hospedaje" },
   { slug: "salud", name: "Salud infantil", color: "#d0605a", icon: "salud" },
 ];

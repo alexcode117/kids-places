@@ -53,7 +53,9 @@ export function Explorer({ places: initial, ads, cities, demo }: { places: Place
     const list = category ? searched.filter((p) => p.category === category) : searched;
     const dist = (p: Place) => (userLocation ? distanceKm(userLocation, p) : 0);
     return [...list].sort((a, b) =>
-      sort === "near" && userLocation ? dist(a) - dist(b) : b.ratingAvg - a.ratingAvg || b.ratingCount - a.ratingCount,
+      sort === "near" && userLocation
+        ? dist(a) - dist(b)
+        : b.ratingAvg - a.ratingAvg || b.ratingCount - a.ratingCount || a.name.localeCompare(b.name, "es"),
     );
   }, [searched, category, sort, userLocation]);
 
@@ -272,7 +274,7 @@ export function Explorer({ places: initial, ads, cities, demo }: { places: Place
           </button>
           {demo ? (
             <p className="absolute top-3 left-3 rounded-full bg-surface/95 px-3 py-1 text-xs font-bold text-ink-2 shadow-soft max-[520px]:top-auto max-[520px]:bottom-9">
-              Modo demostración · datos de ejemplo
+              Modo demostración · sin base de datos
             </p>
           ) : null}
         </section>

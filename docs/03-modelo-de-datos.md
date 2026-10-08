@@ -42,7 +42,8 @@ Base de datos: Postgres (Supabase) con la extensión PostGIS.
 | city_id | uuid | FK → cities |
 | zone | text | urbanización / sector |
 | address | text | |
-| location | geography(Point, 4326) | índice GIST |
+| location | geography(Point, 4326) | índice GIST. Vacío en borradores; obligatorio para publicar |
+| location_verified | bool | false = ubicación aproximada |
 | phone | text | opcional |
 | instagram | text | opcional |
 | website | text | opcional |

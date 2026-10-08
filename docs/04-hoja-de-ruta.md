@@ -9,7 +9,7 @@
 - [x] Agregar la fuente Brownist en `brand/fuentes/`
 - [ ] Agregar la licencia de Brownist (confirmar uso web y en apps)
 - [x] Agregar el logo en SVG (se generaron variantes: carita, logotipo y versión para modo oscuro)
-- [ ] Agregar el dataset en `data/dataset/`
+- [x] Agregar el dataset en `data/dataset/`
 - [ ] Validar el diseño (preguntas abajo)
 
 ### Preguntas de diseño por validar
@@ -25,7 +25,9 @@
 - [x] Monorepo (npm workspaces) + Next.js 16 + Tailwind 4 + tokens de marca + fuente Brownist
 - [x] Migraciones del esquema, RLS, trigger de puntuación y almacenamiento de fotos
 - [ ] Crear el proyecto en Supabase y ejecutar las migraciones (ver docs/07-puesta-en-marcha.md)
-- [ ] Importador del dataset (en espera del archivo)
+- [x] Importador del dataset (`npm run importar`)
+- [x] Categoría "Cursos y talleres" y Barquisimeto como ciudad inicial
+- [ ] Verificar las 15 ubicaciones aproximadas y ubicar los 18 sitios en borrador
 - [x] Mapa MapLibre con estilo propio y pines por categoría
 - [x] Lista sincronizada, filtros, búsqueda, orden y "Cerca de mí"
 - [x] Vista detalle + página `/sitios/[slug]` con metadatos para compartir
