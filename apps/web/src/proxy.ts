@@ -7,6 +7,19 @@ export async function proxy(request: NextRequest) {
   let response = NextResponse.next({ request });
   if (!isSupabaseConfigured) return response;
 
+  // Si la URL de retorno no está permitida en Supabase, este devuelve el código de
+  // inicio de sesión a la "Site URL" (p. ej. "/?code=…"). Lo reenviamos al callback.
+  const { pathname, searchParams } = request.nextUrl;
+  const code = searchParams.get("code");
+  if (code && pathname !== "/auth/callback") {
+    const url = request.nextUrl.clone();
+    url.pathname = "/auth/callback";
+    url.search = "";
+    url.searchParams.set("code", code);
+    url.searchParams.set("next", pathname);
+    return NextResponse.redirect(url);
+  }
+
   const supabase = createServerClient(SUPABASE_URL, SUPABASE_KEY, {
     cookies: {
       getAll: () => request.cookies.getAll(),
